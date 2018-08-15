@@ -6,8 +6,6 @@ import './componentes.css';
 const Matrix = () => (
 	<div id="Matrix"> 
 		<Led></Led>
-		<Led></Led>
-		<Led></Led>
 	</div>
 );
 
