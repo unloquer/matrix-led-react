@@ -17,15 +17,21 @@ class Led extends Component {
     	this.state = { color: 0 }; 
   	}
 
-  	changeColor = () => {
-    	this.setState({ color: (this.state.color + 1) % colores.length })
+  	envioEstado = () => {
+  		console.log("hola")
   	}
 
-	render(){
-		let state = colores[this.state.color];
+  	changeColor = () => {
+    	this.setState({ color: (this.state.color + 1) % colores.length })
+    	console.log("posicion: "+this.state.color);
+  	}
+  	
+	render = () => {
+		const estado = colores[this.state.color];
+
 		return (
 				<div className="envLed"> 
-					<p className={state} onClick={this.changeColor}> Led </p> 
+					<p className={estado} onClick={this.changeColor}> Led </p> 
 				</div>
 		);
 	}
