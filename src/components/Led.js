@@ -28,10 +28,11 @@ class Led extends Component {
   	
 	render = () => {
 		const estado = colores[this.state.color];
+    const clases = `${estado} botones`;
 
 		return (
 				<div className="envLed"> 
-					<p className={estado} onClick={this.changeColor}> Led </p> 
+					<p className={clases} onClick={this.changeColor}> Led </p> 
 				</div>
 		);
 	}
