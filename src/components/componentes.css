@@ -1,9 +1,9 @@
 div#Matrix{
-width: 99%;
-    height: 100%;
-    background: gray;
-    margin: 8px 4px;
-    cursor: initial;
+  width: 99%;
+  height: 100%;
+  background: gray;
+  margin: 8px 4px;
+  cursor: initial;
 }
 
 div:focus{
