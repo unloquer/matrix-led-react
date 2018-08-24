@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './componentes.css';
 
-
 const colores = [ 
   "blackButton",
   "whiteButton",
@@ -9,6 +8,20 @@ const colores = [
   "blueButton",
   "redButton" 
 ];
+
+
+/*
+const colores = [ 
+	{f:1, c:1, color: "blackButton"},
+	{f:2, c:1, color: "whiteButton"},
+	{f:3, c:1, color: "greenButton"},
+	{f:4, c:1, color: "blueButton"},
+	{f:1, c:2, color: "greenButton"},
+	{f:1, c:2, color: "blackButton"}, 
+	{f:1, c:2, color: "whiteButton"}, 
+	{f:1, c:2, color: "greenButton"},  
+  ];
+ */
 
 class Led extends Component { 
 
@@ -28,7 +41,7 @@ class Led extends Component {
   	
 	render = () => {
 		const estado = colores[this.state.color];
-    const clases = `${estado} botones`;
+        const clases = `botones ${estado}`;
 
 		return (
 				<div className="envLed"> 
