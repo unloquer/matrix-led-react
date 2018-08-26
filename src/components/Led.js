@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
 import './componentes.css';
 
-const colores = [ 
-  "blackButton",
-  "whiteButton",
-  "greenButton",
-  "blueButton",
-  "redButton" 
-];
-
-
-/*
-const colores = [ 
-	{f:1, c:1, color: "blackButton"},
-	{f:2, c:1, color: "whiteButton"},
-	{f:3, c:1, color: "greenButton"},
-	{f:4, c:1, color: "blueButton"},
-	{f:1, c:2, color: "greenButton"},
-	{f:1, c:2, color: "blackButton"}, 
-	{f:1, c:2, color: "whiteButton"}, 
-	{f:1, c:2, color: "greenButton"},  
+const colores_ = [ 
+	{nombre: "led 1", f:2, c:1, color: "whiteButton"},
+	{nombre: "led 2", f:3, c:1, color: "greenButton"},
+	{nombre: "led 3", f:4, c:1, color: "blueButton"},
+	{nombre: "led 4", f:1, c:1, color: "blackButton"},
+	{nombre: "led 5", f:1, c:2, color: "greenButton"},
+	{nombre: "led 6", f:1, c:2, color: "blackButton"}, 
+	{nombre: "led 7", f:1, c:2, color: "whiteButton"}, 
+	{nombre: "led 8", f:1, c:2, color: "greenButton"},  
   ];
- */
 
 class Led extends Component { 
 
@@ -31,21 +20,21 @@ class Led extends Component {
   	}
 
   	envioEstado = () => {
-  		console.log("hola")
+  		console.log("hola");
   	}
 
   	changeColor = () => {
-    	this.setState({ color: (this.state.color + 1) % colores.length })
+    	this.setState({ color: (this.state.color + 1) % colores_.length });
     	console.log("posicion: "+this.state.color);
   	}
   	
 	render = () => {
-		const estado = colores[this.state.color];
-        const clases = `botones ${estado}`;
+		const estado = colores_[this.state.color];
+        const clases = `botones ${estado.color}`;
 
 		return (
 				<div className="envLed"> 
-					<p className={clases} onClick={this.changeColor}> Led </p> 
+					<p className={clases} onClick={this.changeColor}> {this.name} </p> 
 				</div>
 		);
 	}
