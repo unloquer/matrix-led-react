@@ -6,5 +6,5 @@
 
 * correr el proyecto `npm start`
 
-mirar [http://localhost:3000/](localhost:3000/)
-- [Updating to New Releases](#updating-to-new-releases)
+mirar:
+- [http://localhost:3000/](localhost:3000/)
