@@ -6,4 +6,4 @@
 
 * correr el proyecto `npm start`
 
-* mirar [http://localhost:3000/] (localhost:3000/)
+* mirar [http://localhost:3000/](localhost:3000/)
