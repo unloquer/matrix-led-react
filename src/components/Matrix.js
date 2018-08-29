@@ -1,31 +1,42 @@
 import React,{Component} from 'react';
 import Led from './Led';
 import './componentes.css';
-
+import {arrayLeds} from '../arrayLeds';
 
 class Matrix extends Component{ 
 	
-	constructor(props){
+	constructor(){
 		super();
+		this.arrayLeds = arrayLeds;
 	} 
 	
+
+    mandarPropsLed = (id, name, color, fila, columna) => { 
+		let objetotmp = {};
+
+		objetotmp = {
+			key : id,
+			nombre : name,
+			color: color,
+			fila: fila,
+			columna: columna
+		}
+		return objetotmp;
+	};
+	
 	render(){
-		//console.log(this.props.leds)
-		const {color, f, c, nombre} = this.props.leds;
+
+		//const matrixnueva = this.mandarPropsLed(1, 'alex', 'black', 2, 5);
+		//console.log(matrixnueva)
 
 		return (			
-
 			<div id="Matrix"> 
 				{/* Nos devuelve cada objeto de la metrix de objetos 
 				luego le asignamos un key con map
-				*/}
-				{Object.keys(this.props.leds).map(key => (
-					<Led
+				*/}				
+				{Object.keys(arrayLeds).map(key => (
+					<Led 
 						key={key}
-						nombre={nombre}
-						fila={f}
-						columna={c}
-						color={color}
 					/>
 				)) }
 			</div>
