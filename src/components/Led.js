@@ -12,27 +12,48 @@ const coloresLeds = [
 	"greenButton"
 ];
 
+
 class Led extends Component { 
 	
-	constructor(){
+	// keyid viene del key que le asigna el map cuando es usado el componente
+	constructor({keyid}){
 		super();
 		this.state = {
 			color: 0
+			
 		}
 	  }
 	  
-  	envioEstado = () => {
-  		console.log("hola");
+  	envioEstado = estadoled => {
+		// guardo el key que viene del map 
+		const {keyid} = this.props;
+		// y el state del componente en un objeto
+		const estadoAppLed = {
+			idLed : keyid,
+			stdLed : estadoled
+		};
+		// y se lo envío al componente padre (Matrix) como prop
+		this.props.enviarEstadoLed(estadoAppLed);
+
+		//console.log(estadoAppLed);
+		//console.log("id" + keyid );
+		//console.log("estadoLed" + estadoled);
+
   	}
 
   	changeColor = () => {
-		this.setState({ color: (this.state.color + 1) % coloresLeds.length });
-		//console.log("posicion: "+this.state.color);
-		
-  	}
+		let estadoActualLed = this.state.color; 
+		// recorro el array cuando se hace click
+		this.setState({ color: ( estadoActualLed  + 1 ) % coloresLeds.length });
+		// envio el state a envioEstado
+		this.envioEstado(estadoActualLed);
+	  }
+	  
+
   	
 	render(){
 		//console.log(this.props);
+
 		const estado = coloresLeds[this.state.color];
 		const cambio = `botones ${estado}`;
 
