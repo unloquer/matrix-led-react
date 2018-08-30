@@ -9,25 +9,13 @@ class Matrix extends Component{
 		super();
 		this.arrayLeds = arrayLeds;
 	} 
-	
 
-    mandarPropsLed = (id, name, color, fila, columna) => { 
-		let objetotmp = {};
-
-		objetotmp = {
-			key : id,
-			nombre : name,
-			color: color,
-			fila: fila,
-			columna: columna
-		}
-		return objetotmp;
-	};
+	enviarEstadoLed = estadoled => {
+		console.log("este es el estado y key de cada led:", estadoled);
+		// TRABAJAR AQUI
+	}
 	
 	render(){
-
-		//const matrixnueva = this.mandarPropsLed(1, 'alex', 'black', 2, 5);
-		//console.log(matrixnueva)
 
 		return (			
 			<div id="Matrix"> 
@@ -37,6 +25,8 @@ class Matrix extends Component{
 				{Object.keys(arrayLeds).map(key => (
 					<Led 
 						key={key}
+						keyid={key}
+						enviarEstadoLed={this.enviarEstadoLed}
 					/>
 				)) }
 			</div>
