@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import './componentes.css';
+import '../css/componentes.css';
 
+// creo este array porque cada led recorrer este array para cambiar de color
 const coloresLeds = [
-	"whiteButton",
-	"greenButton",
-	"blueButton",
-	"blackButton",
-	"greenButton",
-	"blackButton", 
-	"whiteButton", 
-	"greenButton"
+	"verde",
+	"verdeluminoso",
+	"verdemilitar",
+	"amarillo",
+	"amarillopollo",
+	"naranja", 
+	"naranjaoscuro", 
+	"cafe",
+	"gris",
+	"grisclaro",
+	"azul",
+	"azulclaro",
+	"azuloscuro",
+	"cyan",
+	"azulverdoso",
+	"rojo"
 ];
 
 
@@ -19,8 +28,8 @@ class Led extends Component {
 	constructor({keyid}){
 		super();
 		this.state = {
-			color: 0
-			
+			color: 0,
+			estadoled : {}
 		}
 	  }
 	  
@@ -33,7 +42,7 @@ class Led extends Component {
 			stdLed : estadoled
 		};
 		// y se lo envío al componente padre (Matrix) como prop
-		this.props.enviarEstadoLed(estadoAppLed);
+		this.props.reciboEstadoLed(estadoAppLed);
 
 		//console.log(estadoAppLed);
 		//console.log("id" + keyid );
