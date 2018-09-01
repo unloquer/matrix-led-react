@@ -5,14 +5,24 @@ import {arrayLeds} from '../arrayLeds';
 
 class Matrix extends Component{ 
 	
-	constructor(){
+	constructor({estadoled}){
 		super();
 		this.arrayLeds = arrayLeds;
+		this.state = {
+			keyLed :'',
+			color: 0
+		}
 	} 
 
 	reciboEstadoLed = estadoled => {
 		//console.log("este es el estado y key de cada led:", estadoled);
 		// TRABAJAR AQUI
+
+		const {idLed, stdLed} = estadoled
+
+		console.log("Id del led: ", idLed)
+		console.log("Color del led: ", stdLed)
+
 	}
 
 	pintoLeds = () => {
