@@ -1,0 +1,117 @@
+/*
+COLORES DE LOS BOTONES
+*/
+
+.verde{
+  background-color: green;
+  color: white;
+}
+
+.verdeluminoso{
+  background-color: lightgreen;
+  color: white;
+}
+
+.verdemilitar{
+  background-color: lime;
+  color: white;
+}
+
+.amarillo{
+  background-color: yellow;
+  color: white;
+}
+
+.amarillopollo{
+  background-color: gold;
+  color: white;
+  border:1px solid black;
+
+}
+
+.naranja{
+  background-color: orange;
+  color: white;
+}
+
+.naranjaoscuro{
+  background-color: orangered;
+  color: white;
+}
+
+.cafe{
+  background-color: brown;
+  color: white;
+}
+
+.gris{
+  background-color: brown;
+  color: white;
+}
+
+.grisclaro{
+  background-color: gainsboro;
+  color: white;
+}
+
+.azul{
+  background-color: blue;
+  color: white;
+}
+
+.azulclaro{
+  background-color: lightblue;
+  color: white;
+}
+
+.azuloscuro{
+  background-color: darkblue;
+  color: white;
+}
+
+.cyan{
+  background-color: cyan;
+  color: white;
+}
+
+.azulverdoso{
+  background-color: teal;
+  color: white;
+}
+
+.rojo{
+  background-color: teal;
+  color: white;
+}
+
+/* TERMINA COLORES DE LOS BOTONES */
+
+div#Matrix{
+  width: 99%;
+  height: 100%;
+  background: gray;
+  margin: 8px 4px;
+  cursor: initial;
+}
+
+div:focus{
+  outline: none;
+}
+
+.botones{
+  width: 35px;
+  height: 35px;
+  margin: 6px auto;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.envLed{
+  width: 5%;
+  height: 6vh;
+  background: blue;
+  display: inline-block;
+  margin: 8px 8px;
+  cursor: initial;
+}
+
