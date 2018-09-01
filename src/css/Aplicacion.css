@@ -1,27 +1,17 @@
 body {
-  min-width: 600px;
-  border: 1px solid black;
-  margin:0;
-  padding:0;
+  width: 370px;
+  border: 5px solid black;
+  margin: 0 auto;
+  padding: 0;
 }
 
 #root{
   width: 100%;
-  background: red;
   margin:0;
   padding: 0;
 }
 
-div{
-  width: 80px;
-  height: 40px;
-  margin: 15px;
-  cursor:pointer;
-}
 
-div:focus{
-  outline: none;
-}
 
 
 
