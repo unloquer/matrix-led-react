@@ -28,8 +28,8 @@ class Led extends Component {
 	constructor({keyid}){
 		super();
 		this.state = {
-			color: 0,
-			estadoled : {}
+			keyLed :keyid,
+			color: 0
 		}
 	  }
 	  
