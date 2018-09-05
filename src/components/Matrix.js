@@ -2,53 +2,46 @@ import React,{Component} from 'react';
 import Led from './Led';
 import '../css/componentes.css';
 import {arrayLeds} from '../arrayLeds';
+import * as R from 'ramda';
 
-class Matrix extends Component{ 
-	
-	constructor({estadoled}){
-		super();
-		this.arrayLeds = arrayLeds;
-		this.state = {
-			keyLed :'',
-			color: 0
-		}
-	} 
+class Matrix extends Component{
 
-	reciboEstadoLed = estadoled => {
-		//console.log("este es el estado y key de cada led:", estadoled);
-		// TRABAJAR AQUI
+  constructor(){
+    super();
+    this.state = {
+      ledsState: new Array(64)
+    }
+  }
 
-		const {idLed, stdLed} = estadoled
+  reciboEstadoLed = (keyid,estadoled) => {
+    //console.log("este es el estado y key de cada led:", estadoled);
+    // TRABAJAR AQUI
 
-		console.log("Id del led: ", idLed)
-		console.log("Color del led: ", stdLed)
+    this.setState({ledsState: R.update(keyid, estadoled, this.state.ledsState)})
+  }
 
-	}
+  pintoLeds = () => {
+    // Nos devuelve cada objeto de la metrix de objetos
+    // luego le asignamos un key con map
+    return (
+      Object.keys(arrayLeds).map((key,idx) => (
+        <Led
+          key={idx}
+          keyid={idx}
+          reciboEstadoLed={this.reciboEstadoLed}
+        />
+      ))
+    )
+  }
 
-	pintoLeds = () => {
-		// Nos devuelve cada objeto de la metrix de objetos 
-		// luego le asignamos un key con map
-		return (
-			Object.keys(arrayLeds).map(key => (
-				<Led 
-					key={key}
-					keyid={key}
-					reciboEstadoLed={this.reciboEstadoLed}
-				/>
-			)) 
-		)
-	}
-	
-	render(){
-		return (	
-				
-			<div id="Matrix"> 
-				{this.pintoLeds()}
-			</div>
-		)
-	}
+  render(){
+    console.log(this.state)
+    return (
+      <div id="Matrix">
+        {this.pintoLeds()}
+      </div>
+    )
+  }
 }
-
-
 
 export default Matrix;
