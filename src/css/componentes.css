@@ -82,6 +82,15 @@ COLORES DE LOS BOTONES
   color: white;
 }
 
+.transparente{
+  background-color:transparent;
+  color: white;
+}
+
+.bordercirculo{
+  border:1px solid black;
+}
+
 /* TERMINA COLORES, DE LOS BOTONES */
 
 div#Matrix{
