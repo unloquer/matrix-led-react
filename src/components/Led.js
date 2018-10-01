@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/componentes.css';
 
 // creo este array porque cada led recorrer este array para cambiar de color
+/*
 const coloresLeds = [
   "verde",
   "verdeluminoso",
@@ -20,7 +21,12 @@ const coloresLeds = [
   "azulverdoso",
   "rojo"
 ];
+*/
 
+const coloresLeds = [
+  "transparente",
+  "gris"
+];
 
 class Led extends Component {
   // keyid viene del key que le asigna el map cuando es usado el componente
@@ -32,6 +38,23 @@ class Led extends Component {
     }
   }
 
+  componentDidMount(){
+    let estadocolor = this.state.color;
+    const {keyid} = this.props;
+
+    // si en el state color al iniciar esta null, lo llenamos con el arraydeleds
+    if(estadocolor.color === undefined){
+
+    this.setState({
+      color: this.props.arrayLeds[this.state.keyLed].color
+    })
+
+    this.props.reciboEstadoLed(keyid, this.state.color);
+   }
+   
+
+  }
+
   envioEstado = estadoled => {
     // guardo el key que viene del map
     const {keyid} = this.props;
@@ -41,7 +64,6 @@ class Led extends Component {
     //console.log(estadoAppLed);
     //console.log("id" + keyid );
     //console.log("estadoLed" + estadoled);
-
   }
 
   changeColor = () => {
@@ -52,13 +74,15 @@ class Led extends Component {
     this.envioEstado(estadoActualLed);
   }
 
-
-
   render(){
-    //console.log(this.props);
+
+    //console.log(this.props.arrayLeds[this.state.keyLed].color);
 
     const estado = coloresLeds[this.state.color];
-    const cambio = `botones ${estado}`;
+    const cambio = `botones bordercirculo ${estado}`;
+    //const coloresDefault = Object.keys(this.props.colores);
+
+    //console.log( coloresDefault.map(i => { i }) );
 
     return (
       //let nombre = this.props.leds;
