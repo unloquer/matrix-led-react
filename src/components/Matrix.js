@@ -9,7 +9,7 @@ class Matrix extends Component{
   constructor(){
     super();
     this.state = {
-      ledsState: new Array(64)
+      ledsState: new Array(64).fill(0) 
     }
   }
 
