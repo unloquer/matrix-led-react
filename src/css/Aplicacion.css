@@ -1,19 +1,14 @@
 body {
   width: 370px;
-  border: 5px solid black;
-  margin: 0 auto;
+  border: 5px solid #38935d;
+  margin: 10px auto;
   padding: 0;
+
 }
 
 #root{
   width: 100%;
   margin:0;
   padding: 0;
+  background:#38935d;
 }
-
-
-
-
-
-
-
