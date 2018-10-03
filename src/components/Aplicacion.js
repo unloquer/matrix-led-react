@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import '../css/componentes.css';
+
 import Matrix from './Matrix';
-//import { enviarSocket } from '../socket';
+import Footer from './Footer';
 
 class Aplicacion extends Component {
-
 
   constructor(){
     super();
@@ -15,26 +15,25 @@ class Aplicacion extends Component {
     this.initSocket();
   }
 
-  initSocket = async () => {
+  initSocket = () => {
     const self = this;
-    this.connection = await new WebSocket('ws://192.168.1.178:81/', ['arduino']);
+    this.connection = new WebSocket('ws://192.168.1.178:81/', ['arduino']);
     this.connection.onopen = function ()       { self.connection.send('Connect ' + new Date()); };
     this.connection.onerror = function (error) { console.log('WebSocket Error ', error);};
     this.connection.onmessage = function (e)   { console.log('Server: ', e.data);}
-
   }
 
 	reciboState = (estadoLeds) => {
-		//console.log("en aplicacion");
-		//console.log(estadoLeds.ledsState);
     if(this.connection) this.connection.send(estadoLeds.ledsState);
-		//enviarSocket(estadoLeds.ledsState);
 	}
 
 	render = () => {
     console.log(this.state)
 		return (
-      <Matrix reciboState={this.reciboState}/>
+      <React.Fragment>
+        <Matrix reciboState={this.reciboState}/>
+        <Footer titulo='Panel de control Matrix de Leds'/>
+      </React.Fragment>
 		);
 	}
 };
