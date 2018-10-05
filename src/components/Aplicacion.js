@@ -17,7 +17,7 @@ class Aplicacion extends Component {
 
   initSocket = () => {
     const self = this;
-    this.connection = new WebSocket('ws://192.168.1.178:81/', ['arduino']);
+    this.connection = new WebSocket('ws://'+document.location.host+'/ws', ['arduino']); 
     this.connection.onopen = function ()       { self.connection.send('Connect ' + new Date()); };
     this.connection.onerror = function (error) { console.log('WebSocket Error ', error);};
     this.connection.onmessage = function (e)   { console.log('Server: ', e.data);}
