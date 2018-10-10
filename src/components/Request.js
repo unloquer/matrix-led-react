@@ -15,7 +15,7 @@ class Request extends Component{
     render(){
         return(
             <div className="">
-                <button type="button" onClick={this.envioPeticion}> Envío request </button>  
+                <button type="button" onClick={this.envioPeticion()}> Envío request </button>  
             </div>
         )
     }
