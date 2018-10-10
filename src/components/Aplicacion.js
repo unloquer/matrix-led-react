@@ -3,6 +3,7 @@ import '../css/componentes.css';
 
 import Matrix from './Matrix';
 import Footer from './Footer';
+import Request from './Request';
 
 class Aplicacion extends Component {
 
@@ -28,11 +29,12 @@ class Aplicacion extends Component {
 	}
 
 	render = () => {
-    console.log(this.state)
+
 		return (
       <React.Fragment>
         <Matrix reciboState={this.reciboState}/>
         <Footer titulo='Panel de control Matrix de Leds'/>
+        <Request />
       </React.Fragment>
 		);
 	}
