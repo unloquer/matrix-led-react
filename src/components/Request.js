@@ -6,7 +6,9 @@ class Request extends Component{
         const url = "http://192.168.40.1/prueba";
         fetch(url)
             .then(respuesta => {
-                return respuesta.json();
+                console.log("respuesta del servidor");
+                console.log(respuesta);
+                //return respuesta.json();
             })
     }
 
