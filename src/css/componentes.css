@@ -1,3 +1,7 @@
+#root{
+  font-family: 'arial', sans-serif;
+}
+
 .rojo{
   background-color: red !important;
   color: white;
@@ -51,4 +55,35 @@ div:focus{
   text-align: center;
   font-size: 18px;
   font-family: 'arial', sans-serif;
+}
+
+.panelControl{
+  display: flex;
+  margin-top:8px;
+  padding: 2px 4px;
+  border:1px solid black;
+}
+
+button{
+  justify-content: center;
+  height: 20px;
+  cursor: pointer;
+}
+
+.slider-container{
+  display: flex;
+  width:20%;
+  height:30px;
+  border:1px solid white;
+  margin-left:8px;
+}
+
+.slider-container p{
+  font-size: 18px;
+  font-weight: 500;
+  color:white;
+  margin:auto;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
 }
