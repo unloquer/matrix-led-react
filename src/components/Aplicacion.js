@@ -11,6 +11,9 @@ class Aplicacion extends Component {
   constructor(){
     super();
     this.connection = null;
+    this.state = {
+      alerta: null
+    }
   }
 
   componentDidMount() {
@@ -26,19 +29,25 @@ class Aplicacion extends Component {
   }
 
 	reciboStateLeds = (estadoLeds) => {
-    console.log(estadoLeds)
     //if(this.connection) this.connection.send(estadoLeds.ledsState);
   }
   
   generoAlertas = (alertas) => {
-    let alert = alertas;
+    this.setState({
+      alerta:alertas
+    })
+
   }
+
+
 
 	render = () => {
 
+    
+
 		return (
       <React.Fragment>
-        <Matrix reciboStateLeds={this.reciboStateLeds} inyectoAlertas={this.generoAlertas}/>
+        <Matrix reciboStateLeds={this.reciboStateLeds} inyectoAlertas={this.state.alerta}/>
         <div className="panelControl">
           <Request />
           <Slider 
