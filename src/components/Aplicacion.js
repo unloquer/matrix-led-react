@@ -4,6 +4,7 @@ import '../css/componentes.css';
 import Matrix from './Matrix';
 import Footer from './Footer';
 import Request from './Request';
+import Slider from './Slider';
 
 class Aplicacion extends Component {
 
@@ -24,17 +25,27 @@ class Aplicacion extends Component {
     this.connection.onmessage = function (e)   { console.log('Server: ', e.data);}
   }
 
-	reciboState = (estadoLeds) => {
-    if(this.connection) this.connection.send(estadoLeds.ledsState);
-	}
+	reciboStateLeds = (estadoLeds) => {
+    console.log(estadoLeds)
+    //if(this.connection) this.connection.send(estadoLeds.ledsState);
+  }
+  
+  generoAlertas = (alertas) => {
+    let alert = alertas;
+  }
 
 	render = () => {
 
 		return (
       <React.Fragment>
-        <Matrix reciboState={this.reciboState}/>
+        <Matrix reciboStateLeds={this.reciboStateLeds} inyectoAlertas={this.generoAlertas}/>
+        <div className="panelControl">
+          <Request />
+          <Slider 
+            generoAlertas={this.generoAlertas}
+          />
+        </div>
         <Footer titulo='Panel de control Matrix de Leds'/>
-        <Request />
       </React.Fragment>
 		);
 	}

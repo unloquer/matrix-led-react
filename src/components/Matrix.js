@@ -15,10 +15,11 @@ class Matrix extends Component{
 
   reciboEstadoLed = (keyid,estadoled) => {
     this.setState({ ledsState: R.update(keyid, estadoled, this.state.ledsState) })
-    this.props.reciboState( {ledsState: R.update(keyid, estadoled, this.state.ledsState)} );
+    this.props.reciboStateLeds( {ledsState: R.update(keyid, estadoled, this.state.ledsState)} );
   }
 
   pintoLeds = () => {
+    console.log(this.props.inyectoAlertas)
     return (
       Object.keys(arrayLeds).map((key,idx) => (
         <Led

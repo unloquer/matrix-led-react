@@ -29,7 +29,6 @@ class Led extends Component {
     this.setState({
       color: ( estadoActualLed + 1 ) % coloresLeds.length
     });
-    // envio el state a envioEstado
     this.envioEstado(estadoActualLed);
   }
 
