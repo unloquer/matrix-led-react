@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
+
 import Led from './Led';
+
 import '../css/componentes.css';
 import {arrayLeds} from '../arrayLeds2';
 import * as R from 'ramda';
@@ -16,35 +18,6 @@ class Matrix extends Component{
   reciboEstadoLed = (keyid,estadoled) => {
     this.setState({ ledsState: R.update(keyid, estadoled, this.state.ledsState) })
     this.props.reciboStateLeds( {ledsState: R.update(keyid, estadoled, this.state.ledsState)} );
-    console.log(this.state.ledsState)
-  }
-
-  pintoAlertas = () => {
-    // aqui llegan las alertas
-    console.log(this.props.inyectoAlertas)
-    let figura = []
-
-    if(this.props.inyectoAlertas === null)
-    {
-      return null;
-    }
-    else if(this.props.inyectoAlertas === 'verde')
-    {
-      figura = [1,1,1,1,0,1,0,1,0,1,
-                1,1,1,1,0,1,0,1,0,1,
-                1,1,1,1,0,1,0,1,0,0,
-                1,1,1,1,0,1,0,1,0,0,
-                1,1,1,1,0,1,0,1,0,0,
-                1,1,1,1,0,1,0,1,0,0,
-                1,0,1
-              ]
-              
-      this.setState({
-        ledsState: figura
-      })
-      
-    }
-    
   }
 
   pintoLeds = () => {
@@ -54,6 +27,7 @@ class Matrix extends Component{
           key={idx}
           keyid={idx}
           reciboEstadoLed={this.reciboEstadoLed}
+          alerta={this.props.alerta}
         />
       ))
     )
