@@ -4,7 +4,22 @@
 
 .rojo{
   background-color: red !important;
-  color: white;
+}
+
+.verde{
+  background-color: green !important;
+}
+
+.amarillo{
+  background-color: yellow !important;
+}
+
+.naranja{
+  background-color: orange !important;
+}
+
+.violeta{
+  background-color: violet !important;
 }
 
 .transparente{
@@ -13,11 +28,9 @@
 }
 
 div#Matrix{
+  display: inline-block;
+  height: 100%;
   width: 100%;
-  height: 380px;
-  background:black;
-  padding-top: 4px;
-  cursor: initial;
 }
 
 div:focus{
@@ -51,17 +64,10 @@ div:focus{
 
 .footer h1{
   color: white;
-  padding: 8px 6px;
+  padding: 12px 6px;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'arial', sans-serif;
-}
-
-.panelControl{
-  display: flex;
-  margin-top:8px;
-  padding: 2px 4px;
-  border:1px solid black;
 }
 
 button{
@@ -70,20 +76,59 @@ button{
   cursor: pointer;
 }
 
-.slider-container{
-  display: flex;
-  width:20%;
-  height:30px;
-  border:1px solid white;
-  margin-left:8px;
+/* nuevos */
+.slider {
+  position: relative;
+  width: 370px;
+  margin: 0 auto;
+  height: 434px;
+  overflow: hidden;
 }
 
-.slider-container p{
-  font-size: 18px;
-  font-weight: 500;
-  color:white;
-  margin:auto;
+.slider-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.slide {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.arrow {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 5px;
+  background: #f9f9f9;
+  border-radius: 50%;
   cursor: pointer;
+  transition: transform ease-in .1s;
+}
+
+.nextArrow {
+  position: absolute;
+  top: 87%;
+  right: 25px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.backArrow {
+  position: absolute;
+  top: 87%;
+  left: 25px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.fa-arrow-right:before, .fa-arrow-left:before {
+  color: darkgray;
+}
+
+.nextArrow:hover .backArrow:hover{
+  color: black !important;
 }
