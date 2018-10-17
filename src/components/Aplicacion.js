@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
 import '../css/componentes.css';
 
+import FlechaDerecha from './FlechaDerecha';
+import FlechaIzquierda from './FlechaIzquierda';
 import Matrix from './Matrix';
-import Footer from './Footer';
-import Request from './Request';
-import Slider from './Slider';
-
+import {alertas} from '../alertas';
 class Aplicacion extends Component {
 
   constructor(){
     super();
+
     this.connection = null;
+
     this.state = {
-      alerta: null
+      alertas: alertas,
+      currentIndex:0,
+      translateValue: 0,
     }
+  }
+
+  componentWillMount(){
+    this.setState(prevState =>{
+      alertas: prevState.alertas
+    })
   }
 
   componentDidMount() {
@@ -32,30 +41,61 @@ class Aplicacion extends Component {
     //if(this.connection) this.connection.send(estadoLeds.ledsState);
   }
   
-  generoAlertas = (alertas) => {
-    this.setState({
-      alerta:alertas
-    })
+  irAlaAnterior = () => {
+    if(this.state.currentIndex === 0) return;
 
+    this.setState(prevState => ({
+      currentIndex: prevState.currentIndex - 1,
+      translateValue: prevState.translateValue + this.slideHeight()
+    }));
+
+    this.actualizoVista();
   }
 
+  irAlaSiguiente = () => {
+    // si nos salimos del total de images, entonces volvemos a cero
+    if(this.state.currentIndex === this.state.alertas.length - 1) {
+      return this.setState({
+        currentIndex: 0,
+        translateValue: 0
+      })
+    }
 
+    this.setState(prevState => ({
+      currentIndex: prevState.currentIndex + 1,
+      translateValue: prevState.translateValue + -(this.slideHeight())
+    }));
+
+    this.actualizoVista();
+  }
+
+  actualizoVista = () =>{
+    const vistaActual = this.state.currentIndex;
+  }
+
+  slideHeight = () => {
+    return document.querySelector('#Matrix').clientHeight
+  }
 
 	render = () => {
 
-    
-
 		return (
-      <React.Fragment>
-        <Matrix reciboStateLeds={this.reciboStateLeds} inyectoAlertas={this.state.alerta}/>
-        <div className="panelControl">
-          <Request />
-          <Slider 
-            generoAlertas={this.generoAlertas}
-          />
+      <div className="slider">
+        <div className="slider-wrapper" style={{
+          transform: `translateY(${this.state.translateValue}px)`,
+          transition: 'transform ease-out 0.45s'
+        }}>
+          {this.state.alertas.map( (alerta,i) => (
+            <Matrix 
+              reciboStateLeds={this.reciboStateLeds} 
+              key={i} 
+              alerta={alerta}/>
+          ))}
         </div>
-        <Footer titulo='Panel de control Matrix de Leds'/>
-      </React.Fragment>
+        {/*<Footer titulo='Panel de control Matrix de Leds'/>*/}
+        <FlechaIzquierda irAlaAnterior={this.irAlaAnterior}/>
+        <FlechaDerecha irAlaSiguiente={this.irAlaSiguiente}/>
+      </div>
 		);
 	}
 };
