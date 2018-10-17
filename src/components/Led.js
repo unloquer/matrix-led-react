@@ -8,13 +8,15 @@ const coloresLeds = [
 
 class Led extends Component {
   // keyid viene del key que le asigna el map cuando es usado el componente
-  constructor({keyid}){
+  constructor({keyid, alerta}){
     super();
     this.state = {
       keyLed :keyid,
-      color: 1
+      color: 1,
+      alerta:alerta
     }
   }
+
 
   envioEstado = estadoled => {
     // guardo el key que viene del map
@@ -25,11 +27,17 @@ class Led extends Component {
 
   changeColor = () => {
     let estadoActualLed = this.state.color;
+    
     // recorro el array cuando se hace click
     this.setState({
-      color: ( estadoActualLed + 1 ) % coloresLeds.length
+      color: ( estadoActualLed + 1 ) % 2
     });
     this.envioEstado(estadoActualLed);
+
+    //imprimo el estado de la matrix con su alerta
+    console.log(coloresLeds)
+    console.log(this.state.alerta)
+
   }
 
   render(){
