@@ -16,7 +16,7 @@ class Matrix extends Component{
   reciboEstadoLed = (keyid,estadoled) => {
     this.setState({ ledsState: R.update(keyid, estadoled, this.state.ledsState) })
     this.props.reciboStateLeds( {ledsState: R.update(keyid, estadoled, this.state.ledsState)} );
-    
+    console.log(this.state.ledsState)
   }
 
   pintoAlertas = () => {
