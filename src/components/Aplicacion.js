@@ -37,6 +37,10 @@ class Aplicacion extends Component {
     this.connection.onmessage = function (e)   { console.log('Server: ', e.data);}
   }
 
+  mandoColorsocket = () => {
+    console.log('mando color por socket');
+  }
+
 	reciboStateLeds = (estadoLeds) => {
     //if(this.connection) this.connection.send(estadoLeds.ledsState);
   }
