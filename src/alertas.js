@@ -1,1 +1,1 @@
-export const alertas = [ 'roja','verde'];
+export const alertas = ['rojo','verde','amarillo','violeta','naranja'];
