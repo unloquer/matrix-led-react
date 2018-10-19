@@ -1,22 +1,65 @@
 import React, { Component } from 'react';
 import '../css/componentes.css';
 
-const coloresLeds = [
-  "rojo",
-  "transparente"
-];
-
 class Led extends Component {
   // keyid viene del key que le asigna el map cuando es usado el componente
-  constructor({keyid, alerta}){
+  constructor({keyid}){
     super();
+
+    this.coloresLeds = [
+      "",
+      ""
+    ];
+
     this.state = {
       keyLed :keyid,
-      color: 1,
-      alerta:alerta
+      color: 0,
+      alerta:''
+    }
+
+  }
+
+  componentDidMount(){
+    this.fijoColores()
+  }
+
+  // con esta función tomo la alerta que entra y la asigno como color a cada matrix 
+  fijoColores = () => {
+    const alertas = this.props.alerta;
+
+    //imprimo el estado de la matrix con su alerta
+    this.setState({
+      alerta:alertas
+    })
+
+    if( (this.state.keyLed <= 63) && (alertas === 'rojo') ) 
+    {
+      this.coloresLeds[0] = 'transparente';
+      this.coloresLeds[1] = 'rojo';
+    }
+    else if(  (this.state.keyLed <= 63) && (alertas === 'verde') )
+    {
+      this.coloresLeds[0] = 'transparente';
+      this.coloresLeds[1] = 'verde';
+    }
+    else if(  (this.state.keyLed <= 63) && (alertas === 'amarillo') )
+    {
+      this.coloresLeds[0] = 'transparente';
+      this.coloresLeds[1] = 'amarillo';
+    }
+    else if(  (this.state.keyLed <= 63) && (alertas === 'naranja') )
+    {
+      this.coloresLeds[0] = 'transparente';
+      this.coloresLeds[1] = 'naranja';
+    }
+    else if(  (this.state.keyLed <= 63) && (alertas === 'violeta') )
+    {
+      this.coloresLeds[0] = 'transparente';
+      this.coloresLeds[1] = 'violeta';
     }
   }
 
+  // esta función toma las alertas que entran y llena un array de color para cada matrix
 
   envioEstado = estadoled => {
     // guardo el key que viene del map
@@ -30,18 +73,13 @@ class Led extends Component {
     
     // recorro el array cuando se hace click
     this.setState({
-      color: ( estadoActualLed + 1 ) % 2
+      color: ( estadoActualLed + 1 ) % this.coloresLeds.length
     });
     this.envioEstado(estadoActualLed);
-
-    //imprimo el estado de la matrix con su alerta
-    console.log(coloresLeds)
-    console.log(this.state.alerta)
-
   }
 
   render(){
-    const estado = coloresLeds[this.state.color];
+    const estado = this.coloresLeds[this.state.color];
     const cambio = `botones ${estado}`;
     return (
       //let nombre = this.props.leds;
