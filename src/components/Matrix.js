@@ -28,6 +28,7 @@ class Matrix extends Component{
           keyid={idx}
           reciboEstadoLed={this.reciboEstadoLed}
           alerta={this.props.alerta}
+          mandoColorsocket={this.props.mandoColorsocket}
         />
       ))
     )
