@@ -132,3 +132,16 @@ button{
 .nextArrow:hover .backArrow:hover{
   color: black !important;
 }
+
+.botonAlerta{
+  position: absolute;
+  top: 88%;
+  left: 102px;
+  z-index: 999;
+  cursor: pointer;
+  width: 173px;
+  height: 25px;
+  background: white;
+  color: #607D8B;
+  font-weight: 800;
+}
