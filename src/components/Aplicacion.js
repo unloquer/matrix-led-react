@@ -4,7 +4,10 @@ import '../css/componentes.css';
 import FlechaDerecha from './FlechaDerecha';
 import FlechaIzquierda from './FlechaIzquierda';
 import Matrix from './Matrix';
+import EnvioAlerta from './EnvioAlerta';
+
 import {alertas} from '../alertas';
+
 class Aplicacion extends Component {
 
   constructor(){
@@ -13,16 +16,10 @@ class Aplicacion extends Component {
     this.connection = null;
 
     this.state = {
-      alertas: alertas,
+      alertas:alertas,
       currentIndex:0,
-      translateValue: 0,
+      translateValue: 0
     }
-  }
-
-  componentWillMount(){
-    this.setState(prevState =>{
-      alertas: prevState.alertas
-    })
   }
 
   componentDidMount() {
@@ -37,12 +34,10 @@ class Aplicacion extends Component {
     this.connection.onmessage = function (e)   { console.log('Server: ', e.data);}
   }
 
-  mandoColorsocket = () => {
-    console.log('mando color por socket');
-  }
-
 	reciboStateLeds = (estadoLeds) => {
-    //if(this.connection) this.connection.send(estadoLeds.ledsState);
+    if(this.connection){
+      this.connection.send(estadoLeds.ledsState);
+    }    
   }
   
   irAlaAnterior = () => {
@@ -52,8 +47,6 @@ class Aplicacion extends Component {
       currentIndex: prevState.currentIndex - 1,
       translateValue: prevState.translateValue + this.slideHeight()
     }));
-
-    this.actualizoVista();
   }
 
   irAlaSiguiente = () => {
@@ -69,12 +62,6 @@ class Aplicacion extends Component {
       currentIndex: prevState.currentIndex + 1,
       translateValue: prevState.translateValue + -(this.slideHeight())
     }));
-
-    this.actualizoVista();
-  }
-
-  actualizoVista = () =>{
-    const vistaActual = this.state.currentIndex;
   }
 
   slideHeight = () => {
@@ -84,21 +71,26 @@ class Aplicacion extends Component {
 	render = () => {
 
 		return (
-      <div className="slider">
+      <div className="slider" onClick={this.envioColor}>
         <div className="slider-wrapper" style={{
           transform: `translateY(${this.state.translateValue}px)`,
           transition: 'transform ease-out 0.45s'
         }}>
-          {this.state.alertas.map( (alerta,i) => (
+          {alertas.map( (alerta,i) => (
             <Matrix 
               reciboStateLeds={this.reciboStateLeds} 
               key={i} 
-              alerta={alerta}/>
+              alerta={alerta}
+              />
           ))}
         </div>
-        {/*<Footer titulo='Panel de control Matrix de Leds'/>*/}
+        
         <FlechaIzquierda irAlaAnterior={this.irAlaAnterior}/>
+        <EnvioAlerta 
+          envioColor={this.state.currentIndex}
+        />
         <FlechaDerecha irAlaSiguiente={this.irAlaSiguiente}/>
+
       </div>
 		);
 	}
