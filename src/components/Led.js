@@ -13,7 +13,7 @@ class Led extends Component {
 
     this.state = {
       keyLed :keyid,
-      color: 0,
+      color: 1,
       alerta:''
     }
 
@@ -27,39 +27,36 @@ class Led extends Component {
   fijoColores = () => {
     const alertas = this.props.alerta;
 
-    //imprimo el estado de la matrix con su alerta
     this.setState({
       alerta:alertas
     })
 
     if( (this.state.keyLed <= 63) && (alertas === 'rojo') ) 
     {
-      this.coloresLeds[0] = 'transparente';
-      this.coloresLeds[1] = 'rojo';
+      this.coloresLeds[1] = 'transparente';
+      this.coloresLeds[0] = 'rojo';
     }
     else if(  (this.state.keyLed <= 63) && (alertas === 'verde') )
     {
-      this.coloresLeds[0] = 'transparente';
-      this.coloresLeds[1] = 'verde';
+      this.coloresLeds[1] = 'transparente';
+      this.coloresLeds[0] = 'verde';
     }
     else if(  (this.state.keyLed <= 63) && (alertas === 'amarillo') )
     {
-      this.coloresLeds[0] = 'transparente';
-      this.coloresLeds[1] = 'amarillo';
+      this.coloresLeds[1] = 'transparente';
+      this.coloresLeds[0] = 'amarillo';
     }
     else if(  (this.state.keyLed <= 63) && (alertas === 'naranja') )
     {
-      this.coloresLeds[0] = 'transparente';
-      this.coloresLeds[1] = 'naranja';
+      this.coloresLeds[1] = 'transparente';
+      this.coloresLeds[0] = 'naranja';
     }
     else if(  (this.state.keyLed <= 63) && (alertas === 'violeta') )
     {
-      this.coloresLeds[0] = 'transparente';
-      this.coloresLeds[1] = 'violeta';
+      this.coloresLeds[1] = 'transparente';
+      this.coloresLeds[0] = 'violeta';
     }
   }
-
-  // esta función toma las alertas que entran y llena un array de color para cada matrix
 
   envioEstado = estadoled => {
     // guardo el key que viene del map
