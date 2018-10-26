@@ -19,7 +19,8 @@ class EnvioAlerta extends Component {
         this.connection.onmessage = function (e)   { console.log('Server: ', e.data);}
     }
 
-    envioColor = () => {
+    envioMatrices = () => {
+        /*
         const color = this.props.envioColor;
         let alerta = '';
 
@@ -32,13 +33,14 @@ class EnvioAlerta extends Component {
         console.log( alerta );
 
         if(this.connection){
-          this.connection.send(alerta); 
+          //this.connection.send(alerta); 
         }
+        */
     }
     
     render() { 
         return ( 
-            <button type="button" className="botonAlerta" onClick={this.envioColor}> Envío Alerta </button>
+            <button type="button" className="botonAlerta" onClick={this.props.envioAlertas}> Envío Alerta </button>
          );
     }
 }
