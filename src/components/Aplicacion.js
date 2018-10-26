@@ -18,7 +18,8 @@ class Aplicacion extends Component {
     this.state = {
       alertas:alertas,
       currentIndex:0,
-      translateValue: 0
+      translateValue: 0,
+      matrices: [0,0,0,0,0]
     }
   }
 
@@ -35,11 +36,22 @@ class Aplicacion extends Component {
   }
 
 	reciboStateLeds = (estadoLeds) => {
+    const matrix0 = this.state.matrices[0];
+    const matrix1 = this.state.matrices[1];
+    const matrix2 = this.state.matrices[2];
+    const matrix3 = this.state.matrices[3];
+
     if(this.connection){
-      this.connection.send(estadoLeds.ledsState);
-    }    
+      // this.connection.send(estadoLeds.ledsState);
+     }  
+
+    this.setState({
+      matrices: estadoLeds.ledsState
+    })
   }
-  
+
+  //this.envioAlertas(estadoLeds.ledsState);
+
   irAlaAnterior = () => {
     if(this.state.currentIndex === 0) return;
 
@@ -65,13 +77,14 @@ class Aplicacion extends Component {
   }
 
   slideHeight = () => {
-    return document.querySelector('#Matrix').clientHeight
+    return document.querySelector('.Matrix').clientHeight
   }
 
 	render = () => {
-
+    
 		return (
-      <div className="slider" onClick={this.envioColor}>
+
+      <div className="slider">
         <div className="slider-wrapper" style={{
           transform: `translateY(${this.state.translateValue}px)`,
           transition: 'transform ease-out 0.45s'
@@ -81,16 +94,15 @@ class Aplicacion extends Component {
               reciboStateLeds={this.reciboStateLeds} 
               key={i} 
               alerta={alerta}
-              />
+            />
           ))}
         </div>
         
         <FlechaIzquierda irAlaAnterior={this.irAlaAnterior}/>
         <EnvioAlerta 
-          envioColor={this.state.currentIndex}
+          envioAlertas={this.envioAlertas}
         />
         <FlechaDerecha irAlaSiguiente={this.irAlaSiguiente}/>
-
       </div>
 		);
 	}
