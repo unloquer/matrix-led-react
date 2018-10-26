@@ -27,7 +27,7 @@
   color: white;
 }
 
-div#Matrix{
+div.Matrix{
   display: inline-block;
   height: 100%;
   width: 100%;
