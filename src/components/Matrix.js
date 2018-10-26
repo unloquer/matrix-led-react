@@ -8,17 +8,28 @@ import * as R from 'ramda';
 
 class Matrix extends Component{
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       ledsState: new Array(64).fill(0)
     }
   }
 
   reciboEstadoLed = (keyid,estadoled) => {
+    const alerta = this.props.alerta;
     this.setState({ ledsState: R.update(keyid, estadoled, this.state.ledsState) })
-    this.props.reciboStateLeds( {ledsState: R.update(keyid, estadoled, this.state.ledsState)} );
+
+    //console.log(this.state.ledsState)
+    //this.props.reciboStateLeds( {ledsState: R.update(keyid, estadoled, this.state.ledsState)} );
+    
+    const matrixEstado ={
+      ledsState: R.update(keyid, estadoled, this.state.ledsState),
+      idMatrix: alerta
+    }
+    this.props.reciboStateLeds(matrixEstado);
   }
+
+
 
   pintoLeds = () => {
     return (
@@ -28,7 +39,6 @@ class Matrix extends Component{
           keyid={idx}
           reciboEstadoLed={this.reciboEstadoLed}
           alerta={this.props.alerta}
-          mandoColorsocket={this.props.mandoColorsocket}
         />
       ))
     )
@@ -36,7 +46,7 @@ class Matrix extends Component{
 
   render(){
     return (
-      <div id="Matrix">
+      <div className="Matrix">
         {this.pintoLeds()}
       </div>
     )
