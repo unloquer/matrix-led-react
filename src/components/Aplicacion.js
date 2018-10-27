@@ -19,7 +19,8 @@ class Aplicacion extends Component {
       alertas:alertas,
       currentIndex:0,
       translateValue: 0,
-      matrices: [new Array(64),new Array(64),new Array(64),new Array(64),new Array(64)]
+      matrices: [new Array(64),new Array(64),new Array(64),new Array(64),new Array(64)], 
+      estadomatrix: new Array(64)
     }
   }
 
@@ -36,45 +37,53 @@ class Aplicacion extends Component {
   }
 
 	reciboStateLeds = (estadoLeds) => {
-    if(this.connection){
-      // this.connection.send(estadoLeds.ledsState);
-     } 
+    if(this.connection)
+    {
+      this.connection.send(estadoLeds.ledsState);
+    } 
 
-    this.actualizoMatrices(estadoLeds);
+    this.setState({
+      estadomatrix: estadoLeds.ledsState
+    })
 
   }
 
-  actualizoMatrices = (data) => {
+  actualizoMatrices = () => {
+
+    const data = this.state.estadomatrix;
     const matrix = [...this.state.matrices];
     const actual = this.state.currentIndex;
 
     if( actual === 0)
     {
-      matrix[0] = data.ledsState;
+      matrix[0] = data;
       this.setState({ matrices: matrix });
     } 
     else if (actual === 1)
     {
-      matrix[1] = data.ledsState;
+      matrix[1] = data;
       this.setState({ matrices: matrix });
     }
     else if (actual === 2)
     {
-      matrix[2] = data.ledsState;
+      matrix[2] = data;
       this.setState({ matrices: matrix });
     }
     else if (actual === 3)
     {
-      matrix[3] = data.ledsState;
+      matrix[3] = data;
       this.setState({ matrices: matrix });
     }
     else if (actual === 4)
     {
-      matrix[4] = data.ledsState;
+      matrix[4] = data;
       this.setState({ matrices: matrix });
     }
     
-    console.log(this.state.matrices);
+    if(this.connection)
+    {
+      this.connection.send(matrix);
+    } 
   }
 
   irAlaAnterior = () => {
@@ -125,7 +134,7 @@ class Aplicacion extends Component {
         
         <FlechaIzquierda irAlaAnterior={this.irAlaAnterior}/>
         <EnvioAlerta 
-          envioAlertas={this.envioAlertas}
+          actualizoMatrices={this.actualizoMatrices}
         />
         <FlechaDerecha irAlaSiguiente={this.irAlaSiguiente}/>
       </div>
