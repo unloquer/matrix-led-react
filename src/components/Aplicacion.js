@@ -46,28 +46,29 @@ class Aplicacion extends Component {
 
   actualizoMatrices = (data) => {
     const matrix = [...this.state.matrices];
-    
-    if(data.idMatrix === 'rojo')
+    const actual = this.state.currentIndex;
+
+    if( actual === 0)
     {
       matrix[0] = data.ledsState;
       this.setState({ matrices: matrix });
     } 
-    else if (data.idMatrix === 'verde')
+    else if (actual === 1)
     {
       matrix[1] = data.ledsState;
       this.setState({ matrices: matrix });
     }
-    else if (data.idMatrix === 'amarillo')
+    else if (actual === 2)
     {
       matrix[2] = data.ledsState;
       this.setState({ matrices: matrix });
     }
-    else if (data.idMatrix === 'naranja')
+    else if (actual === 3)
     {
       matrix[3] = data.ledsState;
       this.setState({ matrices: matrix });
     }
-    else if (data.idMatrix === 'violeta')
+    else if (actual === 4)
     {
       matrix[4] = data.ledsState;
       this.setState({ matrices: matrix });
