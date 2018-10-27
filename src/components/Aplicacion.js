@@ -19,7 +19,7 @@ class Aplicacion extends Component {
       alertas:alertas,
       currentIndex:0,
       translateValue: 0,
-      matrices: [0,0,0,0,0]
+      matrices: [new Array(64),new Array(64),new Array(64),new Array(64),new Array(64)]
     }
   }
 
@@ -36,21 +36,45 @@ class Aplicacion extends Component {
   }
 
 	reciboStateLeds = (estadoLeds) => {
-    const matrix0 = this.state.matrices[0];
-    const matrix1 = this.state.matrices[1];
-    const matrix2 = this.state.matrices[2];
-    const matrix3 = this.state.matrices[3];
-
     if(this.connection){
       // this.connection.send(estadoLeds.ledsState);
-     }  
+     } 
 
-    this.setState({
-      matrices: estadoLeds.ledsState
-    })
+    this.actualizoMatrices(estadoLeds);
+
   }
 
-  //this.envioAlertas(estadoLeds.ledsState);
+  actualizoMatrices = (data) => {
+    const matrix = [...this.state.matrices];
+    
+    if(data.idMatrix === 'rojo')
+    {
+      matrix[0] = data.ledsState;
+      this.setState({ matrices: matrix });
+    } 
+    else if (data.idMatrix === 'verde')
+    {
+      matrix[1] = data.ledsState;
+      this.setState({ matrices: matrix });
+    }
+    else if (data.idMatrix === 'amarillo')
+    {
+      matrix[2] = data.ledsState;
+      this.setState({ matrices: matrix });
+    }
+    else if (data.idMatrix === 'naranja')
+    {
+      matrix[3] = data.ledsState;
+      this.setState({ matrices: matrix });
+    }
+    else if (data.idMatrix === 'violeta')
+    {
+      matrix[4] = data.ledsState;
+      this.setState({ matrices: matrix });
+    }
+    
+    console.log(this.state.matrices);
+  }
 
   irAlaAnterior = () => {
     if(this.state.currentIndex === 0) return;
