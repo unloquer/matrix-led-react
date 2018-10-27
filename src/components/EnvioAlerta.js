@@ -40,7 +40,7 @@ class EnvioAlerta extends Component {
     
     render() { 
         return ( 
-            <button type="button" className="botonAlerta" onClick={this.props.envioAlertas}> Envío Alerta </button>
+            <button type="button" className="botonAlerta" onClick={this.props.actualizoMatrices}> Envío Alerta </button>
          );
     }
 }
